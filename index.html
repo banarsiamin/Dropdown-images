@@ -1,0 +1,28 @@
+<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <label for="people">Select a Person Whith Image:</label>
+    <select name="people" id="people">
+      <option value="1" data-class="avatar" data-style="background-image: url('https://avatars2.githubusercontent.com/u/7187348?v=3&s=40');">Er Amin Khan</option>
+      <option value="3" data-class="avatar" data-style="background-image: url('https://scontent.fblr1-1.fna.fbcdn.net/v/t1.0-9/12985599_1102466113160236_3681720784516748764_n.jpg?oh=50122a986c5ad4fe23f660995084ea5b&oe=59B041E7');">banarsiamin</option>
+    </select>
+<script>
+$( function() {
+    $.widget( "custom.iconselectmenu", $.ui.selectmenu, {
+      _renderItem: function( ul, item ) {
+        var li = $( "<li>" ),
+          wrapper = $( "<div>", { text: item.label } );
+        if ( item.disabled ) {
+          li.addClass( "ui-state-disabled" );
+        }
+        $( "<span>", {
+          style: item.element.attr( "data-style" ),
+          "class": "ui-icon " + item.element.attr( "data-class" )
+        })
+          .appendTo( wrapper );
+        return li.append( wrapper ).appendTo( ul );
+      }
+    });
+    $( "#people" ).iconselectmenu().iconselectmenu( "menuWidget").addClass( "ui-menu-icons avatar" );
+  } );
+  </script>
